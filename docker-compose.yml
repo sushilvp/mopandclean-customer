@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: mopandclean_app
+    volumes:
+      - .:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+    environment:
+      - PHP_EXTENSION=pdo_mysql
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=mopandclean
+      - DB_USERNAME=mopuser
+      - DB_PASSWORD=password
+    depends_on:
+      - db
+    networks:
+      - mopandclean_network
+
+  db:
+    image: mysql:8.0
+    container_name: mopandclean_db
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mopandclean
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - mopandclean_network
+
+  web:
+    image: nginx:alpine
+    container_name: mopandclean_nginx
+    volumes:
+      - .:/var/www/html
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8080:80
+    depends_on:
+      - app
+    networks:
+      - mopandclean_network
+
+volumes:
+  dbdata:
+
+networks:
+  mopandclean_network:
+    driver: bridge
