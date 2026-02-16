@@ -6,6 +6,14 @@
         <h1 class="auth-title">MopAndClean</h1>
         <p class="auth-subtitle">Welcome back! Login to your account</p>
 
+        <?php if ($this->session->flashdata('success')): ?>
+            <div class="alert alert-success alert-sm"><?php echo $this->session->flashdata('success'); ?></div>
+        <?php endif; ?>
+
+        <?php if ($this->session->flashdata('error')): ?>
+            <div class="alert alert-danger alert-sm"><?php echo $this->session->flashdata('error'); ?></div>
+        <?php endif; ?>
+
         <?php if (!empty($error)): ?>
             <div class="alert alert-danger alert-sm"><?php echo $error; ?></div>
         <?php endif; ?>

@@ -568,8 +568,8 @@ body {
 }
 
 .profile-avatar {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     background: linear-gradient(135deg, var(--primary), var(--accent));
     border-radius: 50%;
     display: flex;
@@ -577,6 +577,33 @@ body {
     justify-content: center;
     margin: 0 auto;
     font-size: 36px;
+    color: white;
+}
+
+.profile-avatar-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 3px solid var(--primary);
+}
+
+.profile-avatar-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-outline-primary {
+    color: var(--primary);
+    border-color: var(--primary);
+    border-radius: var(--radius);
+    font-size: 13px;
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary);
     color: white;
 }
 

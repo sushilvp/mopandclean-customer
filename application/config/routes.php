@@ -68,7 +68,9 @@ $route['booking/(:num)'] = 'booking/detail/$1';
 
 // Profile routes
 $route['profile'] = 'profile/index';
+$route['edit-profile'] = 'profile/edit';
 $route['change-password'] = 'profile/change_password';
 
 // Forgot password
 $route['forgot-password'] = 'auth/forgot_password';
+$route['reset-password/(:any)'] = 'auth/reset_password/$1';

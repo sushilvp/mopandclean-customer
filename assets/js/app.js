@@ -33,7 +33,31 @@ document.addEventListener('DOMContentLoaded', function() {
         // Total
         var total = subTotal + subTotal1 + subTotal2;
         document.getElementById('total_cost').value = total.toFixed(2);
-        document.getElementById('total_display').textContent = '\u20B9' + total.toFixed(2);
+        document.getElementById('total_display').textContent = '₹' + total.toFixed(2);
+    }
+
+    // Profile image preview
+    var profileInput = document.getElementById('profile_image');
+    if (profileInput) {
+        profileInput.addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    var preview = document.getElementById('profilePreview');
+                    var placeholder = document.getElementById('profilePlaceholder');
+                    if (preview) {
+                        preview.src = event.target.result;
+                        preview.style.display = '';
+                        preview.parentElement.style.display = '';
+                    }
+                    if (placeholder) {
+                        placeholder.style.display = 'none';
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
     }
 
     // Set minimum date for date picker to today

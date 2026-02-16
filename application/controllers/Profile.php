@@ -21,6 +21,23 @@ class Profile extends CI_Controller {
             'page_title' => 'Profile',
             'active_nav' => 'profile',
             'success'    => $this->session->flashdata('success'),
+        ];
+
+        $this->load->view('layouts/header', $data);
+        $this->load->view('profile/index', $data);
+        $this->load->view('layouts/footer', $data);
+    }
+
+    public function edit()
+    {
+        $customer_id = $this->auth_check->customer_id();
+        $customer = $this->customer_model->get_by_id($customer_id);
+
+        $data = [
+            'customer'   => $customer,
+            'page_title' => 'Edit Profile',
+            'active_nav' => 'profile',
+            'success'    => '',
             'error'      => '',
         ];
 
@@ -35,6 +52,21 @@ class Profile extends CI_Controller {
                     'phone'     => $this->input->post('phone', true),
                     'address'   => $this->input->post('address', true),
                 ];
+
+                // Handle profile image upload
+                if (!empty($_FILES['profile_image']['name'])) {
+                    $upload_result = $this->_upload_profile_image($customer_id);
+                    if ($upload_result['status']) {
+                        $update_data['profile_image'] = $upload_result['file_name'];
+                    } else {
+                        $data['error'] = $upload_result['error'];
+                        $data['customer'] = $customer;
+                        $this->load->view('layouts/header', $data);
+                        $this->load->view('profile/edit', $data);
+                        $this->load->view('layouts/footer', $data);
+                        return;
+                    }
+                }
 
                 if ($this->customer_model->update_profile($customer_id, $update_data)) {
                     $this->session->set_userdata('customer_name', $update_data['full_name']);
@@ -52,8 +84,34 @@ class Profile extends CI_Controller {
         }
 
         $this->load->view('layouts/header', $data);
-        $this->load->view('profile/index', $data);
+        $this->load->view('profile/edit', $data);
         $this->load->view('layouts/footer', $data);
+    }
+
+    private function _upload_profile_image($customer_id)
+    {
+        $upload_path = './uploads/profiles/';
+
+        // Create directory if it doesn't exist
+        if (!is_dir($upload_path)) {
+            mkdir($upload_path, 0755, true);
+        }
+
+        $config = [
+            'upload_path'   => $upload_path,
+            'allowed_types' => 'jpg|jpeg|png|gif|webp',
+            'max_size'      => 2048, // 2MB
+            'file_name'     => 'profile_' . $customer_id . '_' . time(),
+        ];
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('profile_image')) {
+            $upload_data = $this->upload->data();
+            return ['status' => true, 'file_name' => $upload_data['file_name']];
+        } else {
+            return ['status' => false, 'error' => $this->upload->display_errors('', '')];
+        }
     }
 
     public function change_password()

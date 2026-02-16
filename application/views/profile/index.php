@@ -1,7 +1,7 @@
 <!-- Page Title -->
 <div class="page-header mb-4">
     <h5 class="mb-1">My Profile</h5>
-    <p class="text-muted mb-0">Manage your account details</p>
+    <p class="text-muted mb-0">Your account details</p>
 </div>
 
 <?php if (!empty($success)): ?>
@@ -11,52 +11,46 @@
     </div>
 <?php endif; ?>
 
-<?php if (!empty($error)): ?>
-    <div class="alert alert-danger"><?php echo $error; ?></div>
-<?php endif; ?>
-
-<?php if (validation_errors()): ?>
-    <div class="alert alert-danger"><?php echo validation_errors(); ?></div>
-<?php endif; ?>
-
 <!-- Profile Avatar -->
 <div class="profile-avatar-section mb-4">
-    <div class="profile-avatar">
-        <i class="bi bi-person-fill"></i>
-    </div>
+    <?php if (!empty($customer->profile_image)): ?>
+        <div class="profile-avatar-img">
+            <img src="<?php echo base_url('uploads/profiles/' . $customer->profile_image); ?>" alt="Profile">
+        </div>
+    <?php else: ?>
+        <div class="profile-avatar">
+            <i class="bi bi-person-fill"></i>
+        </div>
+    <?php endif; ?>
     <h6 class="mt-2 mb-0"><?php echo htmlspecialchars($customer->full_name); ?></h6>
     <small class="text-muted"><?php echo htmlspecialchars($customer->email); ?></small>
 </div>
 
-<!-- Edit Profile Form -->
-<?php echo form_open('profile', ['class' => 'booking-form']); ?>
-    <div class="form-section">
-        <label class="form-label fw-semibold">Full Name</label>
-        <input type="text" class="form-control" name="full_name"
-               value="<?php echo htmlspecialchars($customer->full_name); ?>" required>
+<!-- Profile Details Card -->
+<div class="detail-card mb-3">
+    <h6 class="detail-card-title"><i class="bi bi-person me-2"></i>Personal Information</h6>
+    <div class="detail-row">
+        <span>Full Name</span>
+        <strong><?php echo htmlspecialchars($customer->full_name); ?></strong>
     </div>
-
-    <div class="form-section">
-        <label class="form-label fw-semibold">Email</label>
-        <input type="email" class="form-control" value="<?php echo htmlspecialchars($customer->email); ?>" disabled>
-        <small class="text-muted">Email cannot be changed</small>
+    <div class="detail-row">
+        <span>Email</span>
+        <strong><?php echo htmlspecialchars($customer->email); ?></strong>
     </div>
-
-    <div class="form-section">
-        <label class="form-label fw-semibold">Phone</label>
-        <input type="tel" class="form-control" name="phone"
-               value="<?php echo htmlspecialchars($customer->phone); ?>" required>
+    <div class="detail-row">
+        <span>Phone</span>
+        <strong><?php echo htmlspecialchars($customer->phone); ?></strong>
     </div>
-
-    <div class="form-section">
-        <label class="form-label fw-semibold">Address</label>
-        <textarea class="form-control" name="address" rows="3" required><?php echo htmlspecialchars($customer->address); ?></textarea>
+    <div class="detail-row">
+        <span>Address</span>
+        <strong class="text-end" style="max-width:60%;"><?php echo htmlspecialchars($customer->address); ?></strong>
     </div>
+</div>
 
-    <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
-        <i class="bi bi-check-lg me-2"></i>Update Profile
-    </button>
-<?php echo form_close(); ?>
+<!-- Edit Profile Button -->
+<a href="<?php echo base_url('edit-profile'); ?>" class="btn btn-primary btn-lg w-100 mb-3">
+    <i class="bi bi-pencil-square me-2"></i>Edit Profile
+</a>
 
 <!-- Quick Links -->
 <div class="profile-links">

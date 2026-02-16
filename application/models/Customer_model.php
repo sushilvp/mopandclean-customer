@@ -77,4 +77,35 @@ class Customer_model extends CI_Model {
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
     }
+
+    public function create_reset_token($email)
+    {
+        // Delete any existing tokens for this email
+        $this->db->where('email', $email);
+        $this->db->delete('password_resets');
+
+        // Create new token
+        $token = bin2hex(random_bytes(32));
+        $this->db->insert('password_resets', [
+            'email'      => $email,
+            'token'      => $token,
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
+        return $token;
+    }
+
+    public function verify_reset_token($token)
+    {
+        // Token valid for 1 hour
+        $this->db->where('token', $token);
+        $this->db->where('created_at >', date('Y-m-d H:i:s', strtotime('-1 hour')));
+        $result = $this->db->get('password_resets')->row();
+        return $result;
+    }
+
+    public function delete_reset_token($token)
+    {
+        $this->db->where('token', $token);
+        $this->db->delete('password_resets');
+    }
 }

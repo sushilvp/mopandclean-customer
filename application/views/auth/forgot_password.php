@@ -3,15 +3,22 @@
         <div class="auth-logo">
             <i class="bi bi-shield-lock"></i>
         </div>
-        <h1 class="auth-title">Reset Password</h1>
-        <p class="auth-subtitle">Enter your email and set a new password</p>
+        <h1 class="auth-title">Forgot Password</h1>
+        <p class="auth-subtitle">Enter your email to receive a reset link</p>
 
         <?php if (!empty($success)): ?>
-            <div class="alert alert-success alert-sm"><?php echo $success; ?></div>
+            <div class="alert alert-success alert-sm">
+                <i class="bi bi-check-circle-fill me-1"></i>
+                <?php echo $success; ?>
+            </div>
         <?php endif; ?>
 
         <?php if (!empty($error)): ?>
             <div class="alert alert-danger alert-sm"><?php echo $error; ?></div>
+        <?php endif; ?>
+
+        <?php if ($this->session->flashdata('error')): ?>
+            <div class="alert alert-danger alert-sm"><?php echo $this->session->flashdata('error'); ?></div>
         <?php endif; ?>
 
         <?php if (validation_errors()): ?>
@@ -25,20 +32,8 @@
                 <label for="email">Email Address</label>
             </div>
 
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="new_password" name="new_password"
-                       placeholder="New Password" required>
-                <label for="new_password">New Password</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password"
-                       placeholder="Confirm Password" required>
-                <label for="confirm_password">Confirm New Password</label>
-            </div>
-
             <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
-                <i class="bi bi-shield-check me-2"></i>Reset Password
+                <i class="bi bi-envelope me-2"></i>Send Reset Link
             </button>
         <?php echo form_close(); ?>
 
