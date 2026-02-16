@@ -37,7 +37,8 @@
     <?php endif; ?>
 </div>
 
-<!-- Cost Breakdown -->
+<!-- Cost Breakdown (shown only if admin has filled costs) -->
+<?php if (floatval($booking->total_cost) > 0): ?>
 <div class="detail-card mb-3">
     <h6 class="detail-card-title"><i class="bi bi-receipt me-2"></i>Cost Breakdown</h6>
 
@@ -64,9 +65,10 @@
 
     <div class="detail-row total">
         <span>Total Cost</span>
-        <strong class="text-primary fs-5">$<?php echo number_format(floatval($booking->total_cost), 2); ?></strong>
+        <strong class="text-primary fs-5">&#8377;<?php echo number_format(floatval($booking->total_cost), 2); ?></strong>
     </div>
 </div>
+<?php endif; ?>
 
 <!-- Comment -->
 <?php if (!empty($booking->comment)): ?>

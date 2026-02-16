@@ -25,43 +25,13 @@ class Booking extends CI_Controller {
         if ($this->input->method() === 'post') {
             $this->form_validation->set_rules('service_id', 'Service Type', 'required|integer');
             $this->form_validation->set_rules('assigned_date', 'Date', 'required');
-            $this->form_validation->set_rules('sqft', 'Square Feet', 'trim');
-            $this->form_validation->set_rules('sqft_cost', 'Sqft Cost', 'trim');
-            $this->form_validation->set_rules('sofa', 'Sofa', 'trim');
-            $this->form_validation->set_rules('sofa_cost', 'Sofa Cost', 'trim');
-            $this->form_validation->set_rules('others', 'Others', 'trim');
-            $this->form_validation->set_rules('others_cost', 'Others Cost', 'trim');
             $this->form_validation->set_rules('comment', 'Comment', 'trim');
 
             if ($this->form_validation->run()) {
-                $sqft = floatval($this->input->post('sqft'));
-                $sqft_cost = floatval($this->input->post('sqft_cost'));
-                $sub_total = $sqft * $sqft_cost;
-
-                $sofa = floatval($this->input->post('sofa'));
-                $sofa_cost = floatval($this->input->post('sofa_cost'));
-                $sub_total1 = $sofa * $sofa_cost;
-
-                $others = floatval($this->input->post('others'));
-                $others_cost = floatval($this->input->post('others_cost'));
-                $sub_total2 = $others * $others_cost;
-
-                $total_cost = $sub_total + $sub_total1 + $sub_total2;
-
                 $job_data = [
                     'customer_id'   => $this->auth_check->customer_id(),
                     'service_id'    => intval($this->input->post('service_id')),
                     'assigned_date' => $this->input->post('assigned_date'),
-                    'sqft'          => strval($sqft),
-                    'sqft_cost'     => strval($sqft_cost),
-                    'sub_total'     => strval($sub_total),
-                    'sofa'          => strval($sofa),
-                    'sofa_cost'     => strval($sofa_cost),
-                    'sub_total1'    => strval($sub_total1),
-                    'others'        => strval($others),
-                    'others_cost'   => strval($others_cost),
-                    'sub_total2'    => strval($sub_total2),
-                    'total_cost'    => strval($total_cost),
                     'comment'       => $this->input->post('comment', true),
                     'status_id'     => 1, // Pending
                 ];
