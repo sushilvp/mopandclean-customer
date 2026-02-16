@@ -1,7 +1,7 @@
 <div class="auth-container">
     <div class="auth-card">
         <div class="auth-logo">
-            <i class="bi bi-house-fill"></i>
+            <img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="MopAndClean">
         </div>
         <h1 class="auth-title">Create Account</h1>
         <p class="auth-subtitle">Sign up to book cleaning services</p>

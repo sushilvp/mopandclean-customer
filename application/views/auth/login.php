@@ -1,9 +1,8 @@
 <div class="auth-container">
     <div class="auth-card">
         <div class="auth-logo">
-            <i class="bi bi-house-fill"></i>
+            <img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="MopAndClean">
         </div>
-        <h1 class="auth-title">MopAndClean</h1>
         <p class="auth-subtitle">Welcome back! Login to your account</p>
 
         <?php if ($this->session->flashdata('success')): ?>

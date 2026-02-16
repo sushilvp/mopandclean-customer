@@ -16,7 +16,7 @@
 <nav class="app-topbar">
     <div class="container-fluid d-flex align-items-center justify-content-between">
         <div class="topbar-brand">
-            <i class="bi bi-house-fill"></i> MopAndClean
+            <img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="MopAndClean" class="topbar-logo">
         </div>
         <div class="topbar-actions">
             <a href="<?php echo base_url('logout'); ?>" class="btn btn-sm btn-outline-light">

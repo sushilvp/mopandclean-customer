@@ -1,7 +1,7 @@
 <div class="auth-container">
     <div class="auth-card">
         <div class="auth-logo">
-            <i class="bi bi-shield-lock"></i>
+            <img src="<?php echo base_url('assets/img/logo.png'); ?>" alt="MopAndClean">
         </div>
         <h1 class="auth-title">Forgot Password</h1>
         <p class="auth-subtitle">Enter your email to receive a reset link</p>
