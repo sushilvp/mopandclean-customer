@@ -1,13 +1,13 @@
 <!-- Page Title -->
 <div class="page-header mb-4">
     <h5 class="mb-1">Booking History</h5>
-    <p class="text-muted mb-0">Your past cleaning services</p>
+    <p class="text-muted mb-0">All your cleaning service bookings</p>
 </div>
 
 <?php if (empty($bookings)): ?>
     <div class="empty-state">
         <i class="bi bi-clock-history"></i>
-        <p>No past bookings yet</p>
+        <p>No bookings yet</p>
         <a href="<?php echo base_url('book'); ?>" class="btn btn-primary btn-sm">Book Your First Service</a>
     </div>
 <?php else: ?>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="booking-info">
                     <i class="bi bi-cash"></i>
-                    <span>$<?php echo number_format(floatval($booking->total_cost), 2); ?></span>
+                    <span>&#8377;<?php echo number_format(floatval($booking->total_cost), 2); ?></span>
                 </div>
             </div>
             <div class="booking-card-footer">

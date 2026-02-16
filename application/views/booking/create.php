@@ -124,7 +124,7 @@
     <div class="total-section">
         <div class="d-flex justify-content-between align-items-center">
             <span class="fw-bold fs-5">Total</span>
-            <span class="fw-bold fs-4 text-primary" id="total_display">$0.00</span>
+            <span class="fw-bold fs-4 text-primary" id="total_display">&#8377;0.00</span>
         </div>
         <input type="hidden" name="total_cost" id="total_cost" value="0">
     </div>

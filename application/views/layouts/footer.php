@@ -15,9 +15,9 @@
         <i class="bi bi-clock-history"></i>
         <span>History</span>
     </a>
-    <a href="<?php echo base_url('logout'); ?>" class="bottomnav-item">
-        <i class="bi bi-person-circle"></i>
-        <span>Logout</span>
+    <a href="<?php echo base_url('profile'); ?>" class="bottomnav-item <?php echo (isset($active_nav) && $active_nav === 'profile') ? 'active' : ''; ?>">
+        <i class="bi bi-person<?php echo (isset($active_nav) && $active_nav === 'profile') ? '-fill' : '-circle'; ?>"></i>
+        <span>Profile</span>
     </a>
 </nav>
 

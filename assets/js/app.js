@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Total
         var total = subTotal + subTotal1 + subTotal2;
         document.getElementById('total_cost').value = total.toFixed(2);
-        document.getElementById('total_display').textContent = '$' + total.toFixed(2);
+        document.getElementById('total_display').textContent = '\u20B9' + total.toFixed(2);
     }
 
     // Set minimum date for date picker to today

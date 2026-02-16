@@ -47,4 +47,34 @@ class Customer_model extends CI_Model {
     {
         return $this->db->get_where('customers', ['phone' => $phone])->num_rows() > 0;
     }
+
+    public function update_profile($id, $data)
+    {
+        $data['updated_at'] = date('Y-m-d H:i:s');
+        $this->db->where('id', $id);
+        return $this->db->update('customers', $data);
+    }
+
+    public function change_password($id, $new_password)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('customers', [
+            'password'   => password_hash($new_password, PASSWORD_DEFAULT),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+    }
+
+    public function get_by_email($email)
+    {
+        return $this->db->get_where('customers', ['email' => $email])->row();
+    }
+
+    public function reset_password($email, $new_password)
+    {
+        $this->db->where('email', $email);
+        return $this->db->update('customers', [
+            'password'   => password_hash($new_password, PASSWORD_DEFAULT),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+    }
 }

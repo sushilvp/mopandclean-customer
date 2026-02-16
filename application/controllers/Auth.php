@@ -100,6 +100,38 @@ class Auth extends CI_Controller {
         $this->load->view('layouts/auth_footer');
     }
 
+    public function forgot_password()
+    {
+        if ($this->session->userdata('customer_id')) {
+            redirect('dashboard');
+        }
+
+        $data = ['error' => '', 'success' => ''];
+
+        if ($this->input->method() === 'post') {
+            $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+            $this->form_validation->set_rules('new_password', 'New Password', 'required|min_length[6]');
+            $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[new_password]');
+
+            if ($this->form_validation->run()) {
+                $email = $this->input->post('email', true);
+                $customer = $this->customer_model->get_by_email($email);
+
+                if ($customer) {
+                    $new_password = $this->input->post('new_password');
+                    $this->customer_model->reset_password($email, $new_password);
+                    $data['success'] = 'Password reset successfully! You can now login.';
+                } else {
+                    $data['error'] = 'No account found with this email address.';
+                }
+            }
+        }
+
+        $this->load->view('layouts/auth_header');
+        $this->load->view('auth/forgot_password', $data);
+        $this->load->view('layouts/auth_footer');
+    }
+
     public function logout()
     {
         $this->session->sess_destroy();

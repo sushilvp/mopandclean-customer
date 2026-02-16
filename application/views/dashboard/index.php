@@ -51,7 +51,7 @@
                 </div>
                 <div class="booking-info">
                     <i class="bi bi-cash"></i>
-                    <span>$<?php echo number_format(floatval($booking->total_cost), 2); ?></span>
+                    <span>&#8377;<?php echo number_format(floatval($booking->total_cost), 2); ?></span>
                 </div>
             </div>
             <div class="booking-card-footer">

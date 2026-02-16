@@ -65,3 +65,10 @@ $route['dashboard'] = 'dashboard/index';
 $route['book'] = 'booking/create';
 $route['history'] = 'booking/history';
 $route['booking/(:num)'] = 'booking/detail/$1';
+
+// Profile routes
+$route['profile'] = 'profile/index';
+$route['change-password'] = 'profile/change_password';
+
+// Forgot password
+$route['forgot-password'] = 'auth/forgot_password';

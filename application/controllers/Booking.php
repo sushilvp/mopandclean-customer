@@ -89,7 +89,7 @@ class Booking extends CI_Controller {
         $customer_id = $this->auth_check->customer_id();
 
         $data = [
-            'bookings'   => $this->job_model->get_past_by_customer($customer_id),
+            'bookings'   => $this->job_model->get_by_customer($customer_id),
             'page_title' => 'Booking History',
             'active_nav' => 'history',
         ];

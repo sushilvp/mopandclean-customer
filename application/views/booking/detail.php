@@ -43,22 +43,22 @@
 
     <?php if (floatval($booking->sub_total) > 0): ?>
     <div class="detail-row">
-        <span>Square Feet (<?php echo $booking->sqft; ?> x $<?php echo number_format(floatval($booking->sqft_cost), 2); ?>)</span>
-        <strong>$<?php echo number_format(floatval($booking->sub_total), 2); ?></strong>
+        <span>Square Feet (<?php echo $booking->sqft; ?> x &#8377;<?php echo number_format(floatval($booking->sqft_cost), 2); ?>)</span>
+        <strong>&#8377;<?php echo number_format(floatval($booking->sub_total), 2); ?></strong>
     </div>
     <?php endif; ?>
 
     <?php if (floatval($booking->sub_total1) > 0): ?>
     <div class="detail-row">
-        <span>Sofa (<?php echo $booking->sofa; ?> x $<?php echo number_format(floatval($booking->sofa_cost), 2); ?>)</span>
-        <strong>$<?php echo number_format(floatval($booking->sub_total1), 2); ?></strong>
+        <span>Sofa (<?php echo $booking->sofa; ?> x &#8377;<?php echo number_format(floatval($booking->sofa_cost), 2); ?>)</span>
+        <strong>&#8377;<?php echo number_format(floatval($booking->sub_total1), 2); ?></strong>
     </div>
     <?php endif; ?>
 
     <?php if (floatval($booking->sub_total2) > 0): ?>
     <div class="detail-row">
-        <span>Others (<?php echo $booking->others; ?> x $<?php echo number_format(floatval($booking->others_cost), 2); ?>)</span>
-        <strong>$<?php echo number_format(floatval($booking->sub_total2), 2); ?></strong>
+        <span>Others (<?php echo $booking->others; ?> x &#8377;<?php echo number_format(floatval($booking->others_cost), 2); ?>)</span>
+        <strong>&#8377;<?php echo number_format(floatval($booking->sub_total2), 2); ?></strong>
     </div>
     <?php endif; ?>
 

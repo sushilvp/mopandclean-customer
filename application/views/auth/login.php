@@ -32,6 +32,9 @@
             </button>
         <?php echo form_close(); ?>
 
+        <div class="auth-footer mb-2">
+            <a href="<?php echo base_url('forgot-password'); ?>">Forgot Password?</a>
+        </div>
         <div class="auth-footer">
             Don't have an account? <a href="<?php echo base_url('register'); ?>">Register</a>
         </div>
