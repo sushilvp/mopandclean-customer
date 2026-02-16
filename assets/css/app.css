@@ -180,6 +180,9 @@ body {
 .topbar-logo {
     height: 34px;
     object-fit: contain;
+    background: var(--white);
+    padding: 4px 10px;
+    border-radius: 8px;
 }
 
 .topbar-actions .btn-outline-light {
